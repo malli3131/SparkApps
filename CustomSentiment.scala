@@ -43,9 +43,9 @@ object CustomSentiment {
 
 	def getSentimentClass(sentimentIndex:Int) : String = {
                 var sentimentClass = "Unknown"
-                if(sentimentIndex <= 0 && sentimentIndex > 4)
+                if(sentimentIndex < 0 && sentimentIndex > 4)
                 sentimentClass = "Unknown"
-                else if(sentimentIndex > 0 && sentimentIndex <=1)
+                else if(sentimentIndex >= 0 && sentimentIndex <=1)
                 sentimentClass = "Negitive"
                 else if(sentimentIndex >1 && sentimentIndex <=2)
                 sentimentClass = "Neutral"

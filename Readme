@@ -1,0 +1,7 @@
+This application is a bunch of Spark jobs, which are used for the folllowing use cases:
+	natural language processing
+	Document Classification
+	Document Clustering
+	Topic Modeling
+	Information Extraction
+	etc...

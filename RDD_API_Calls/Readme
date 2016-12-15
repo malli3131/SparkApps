@@ -1,0 +1,8 @@
+The following are the RDD API calls:
+-----------------------------------
+1. aggregate
+2. aggregateByKey
+3. cartesian
+4. coalesce/repartition
+5. Checkpoint
+6. cogroup/groupWith

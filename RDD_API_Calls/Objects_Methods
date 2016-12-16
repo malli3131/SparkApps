@@ -1,0 +1,50 @@
+SparkConf:
+=========
+!=             contains    getAppId         getLong          getTimeAsSeconds      registerKryoClasses   setJars         →   
+##             ensuring    getAvroSchema    getOption        hashCode              remove                setMaster           
++              eq          getBoolean       getSizeAsBytes   isInstanceOf          set                   setSparkHome        
+->             equals      getClass         getSizeAsGb      ne                    setAll                synchronized        
+==             formatted   getDouble        getSizeAsKb      notify                setAppName            toDebugString       
+asInstanceOf   get         getExecutorEnv   getSizeAsMb      notifyAll             setExecutorEnv        toString            
+clone          getAll      getInt           getTimeAsMs      registerAvroSchemas   setIfMissing          wait 
+
+SparkConext:
+=============
+!=                      binaryRecords           formatted                  isInstanceOf       objectFile          statusTracker    
+##                      broadcast               getAllPools                isLocal            parallelize         stop             
++                       cancelAllJobs           getCheckpointDir           isStopped          range               submitJob        
+->                      cancelJobGroup          getClass                   jars               register            synchronized     
+==                      clearCallSite           getConf                    killExecutor       requestExecutors    textFile         
+accumulable             clearJobGroup           getExecutorMemoryStatus    killExecutors      runApproximateJob   toString         
+accumulableCollection   collectionAccumulator   getExecutorStorageStatus   listFiles          runJob              uiWebUrl         
+accumulator             defaultMinPartitions    getLocalProperty           listJars           sequenceFile        union            
+addFile                 defaultParallelism      getPersistentRDDs          longAccumulator    setCallSite         version          
+addJar                  deployMode              getPoolForName             makeRDD            setCheckpointDir    wait             
+addSparkListener        doubleAccumulator       getRDDStorageInfo          master             setJobDescription   wholeTextFiles   
+appName                 emptyRDD                getSchedulingMode          ne                 setJobGroup         →                
+applicationAttemptId    ensuring                hadoopConfiguration        newAPIHadoopFile   setLocalProperty                     
+applicationId           eq                      hadoopFile                 newAPIHadoopRDD    setLogLevel                          
+asInstanceOf            equals                  hadoopRDD                  notify             sparkUser                            
+binaryFiles             files                   hashCode                   notifyAll          startTime  
+
+RDD:
+====
+
+!=             count                 foreachPartitionAsync   mapPartitions            reduce             toLocalIterator   
+##             countApprox           formatted               mapPartitionsWithIndex   repartition        toString          
++              countApproxDistinct   getCheckpointFile       max                      sample             top               
+++             countAsync            getClass                min                      saveAsObjectFile   treeAggregate     
+->             countByValue          getNumPartitions        name                     saveAsTextFile     treeReduce        
+==             countByValueApprox    getStorageLevel         ne                       setName            union             
+aggregate      dependencies          glom                    notify                   sortBy             unpersist         
+asInstanceOf   distinct              groupBy                 notifyAll                sparkContext       wait              
+cache          ensuring              hashCode                partitioner              subtract           zip               
+canEqual       eq                    id                      partitions               synchronized       zipPartitions     
+cartesian      equals                intersection            persist                  take               zipWithIndex      
+checkpoint     filter                isCheckpointed          pipe                     takeAsync          zipWithUniqueId   
+coalesce       first                 isEmpty                 preferredLocations       takeOrdered        →                 
+collect        flatMap               isInstanceOf            productArity             takeSample                           
+collectAsync   fold                  iterator                productElement           toDF                                 
+compute        foreach               keyBy                   productIterator          toDS                                 
+context        foreachAsync          localCheckpoint         productPrefix            toDebugString                        
+copy           foreachPartition      map                     randomSplit              toJavaRDD

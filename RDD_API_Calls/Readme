@@ -1,0 +1,15 @@
+The following are the RDD API calls:
+-----------------------------------
+1. aggregate -- Aggregate the data using two reduce functions, one is at partition level and second one is across the partitions: Intial value is applied for both reduce functions
+2. aggregateByKey --> Aggregate (applied to the values with the same key) the data using two reduce functions, one is at partition level and second one is across the partitions: Intial value is not applied for second reduce function [Paired RDD]
+3. cartesian  --> To generate the cartesian product or join
+4. coalesce/repartition --> To repartition the RDD
+5. Checkpoint --> To store the RDD into a binary file
+6. cogroup/groupWith  ---> To cogroup the RDDs  [paired RDDs]
+7. collect/toArray --> Turn RDD into Scala Array
+8. collectAsMap --> Convert Pair RDD into Scala Map  [Paired RDD]
+9. combineByKey --> Combiner, mergeValue, mergeCombiners   [Paired RDD]
+10. context, sparkContext --> Return the SparkContext object which is used to create the RDD.
+11. compute --> Executes dependencies and computes the actual representation of the RDD. This function should not be called directly by users
+12. count --> Returns the number of iterms stored in RDD 
+13. 

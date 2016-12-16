@@ -6,3 +6,7 @@ The following are the RDD API calls:
 4. coalesce/repartition
 5. Checkpoint
 6. cogroup/groupWith
+7. collect/toArray
+8. collectAsMap
+9. combineByKey
+

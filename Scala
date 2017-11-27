@@ -1,0 +1,9 @@
+println("Hello World")
+def add(a:Int, b:Int) : Int = {
+  (a + b)
+}
+val c = add(10, 20)
+println(c)
+
+val num = (a:Int, b:Int) => (a + b)
+println(num(20, 30))

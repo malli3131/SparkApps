@@ -343,3 +343,72 @@ DataFrame Methods and Attributes:
 	73.	union
 
 			namesDF.union(names1DF).show
+
+************************************************************
+
+SparkSQL Dataset:
+
+	Create datasets using Collections:
+
+		case class Person(name:String, age:Int, place:String)
+		val peopleDS = Seq(Person("naga", 30, "bangalore"), Person("hari", 24, "mysore")).toDS()
+		peopleDS.show
+		peopleDS.printSchema
+
+		val namesDS = Seq("Naga", "Hari", "Siva").toDS()
+		namesDS.show
+		val namesDS = Seq("Naga", "Hari", "Siva").toDS().withColumnRenamed("value", "name")
+		namesDS.show
+
+		val persons = Seq("Naga", "Hari", "Siva")
+		val personDS = spark.createDataset(persons)
+		personDS.show
+
+	Creating Datasets using RDDs
+
+		val peopleRDD = sc.textFile("/home/naga/bigdata/jobs/spark/people")
+		peopleRDD.first()
+		val projRDD = peopleRDD.map(record =>{
+			val cols = record.split(",")
+			(cols(0), cols(1).toInt, cols(2))
+		})
+		projRDD.first
+		val projDS = projRDD.toDS()
+		projDS.show
+
+		val projDS = projRDD.map(record => Person(record._1, record._2, record._3)).toDS()
+		projDS.show
+
+		import org.apache.spark.sql._
+		val personDS = spark.createDataset
+		
+	Creating Datasets using Hive Tables:
+	
+		val stocksDF = spark.sql("select * from stocks")
+		stockDF.first
+		
+		case class Stock(market:String, stock:String, sdate:String, open:Double, high:Double, low:Double, close:Double, volume:Long, adj_close:Double)
+		val stockDS = stockDF.as[Stock]
+		stockDS.show
+
+	Creating Datasets using data sources like json, csv, parquet, orc, text, etc...
+	
+		Json:
+
+			val jsonDF = spark.read.json("file:///home/naga/bigdata/jobs/people.json")
+			jsonDF.show
+			jsonDF.printSchema
+		
+			case class Emp(age:Long, name:String)
+			val jsonDS = spark.read.json("file:///home/naga/bigdata/jobs/people.json").as[Emp]
+			jsonDS.printSchema
+			jsonDS.show
+			jsonDS.write.csv("file:///home/naga/bigdata/jobs/person")
+
+		CSV:
+
+			case class Person(name:String, age:String, place:String)
+			val peopleDF = spark.read.option("header", true).csv("hdfs://master:9000/sql/people.csv")
+			val peopleDS = peopleDF.as[Person]
+			peopleDS.show
+			peopleDS.printSchema

@@ -58,9 +58,20 @@ object MyCorrelation extends App {
 
 * Hypothesis testing is a powerful tool in statistics to determine whether a result is statistically significant or not, whether this result occurred by chance or not. spark.ml currently supports Pearson’s Chi-squared ( χ2χ2) tests for independence.
 * ChiSquareTest conducts Pearson’s independence test for every feature against the label. For each feature, the (feature, label) pairs are converted into a contingency matrix for which the Chi-squared statistic is computed. All label and feature values must be categorical.
+* It is also called as "confirmatory data analysis".
 
 ##### Examples:
+* Hypothesis testing is a way of determining probability that a given hypothesis is true.
+* Let's say a sample data suggests that females tend to vote more for the Democratic Party.
+* This may or may not be true for the larger population. What if this pattern is there in the sample data just by chance?
+* The hypothesis to disprove is called null hypothesis. Hypothesis testing works with categorical data. 
+* Let's look at the example of a gallop poll of party affiliations.
 
+| Party     | Male      | Female |
+|-----------|-----------|--------|
+|Democratic Party|32|41|
+|Republican Party|28|25|
+|Independent|34|26|
 ```
 package com.hub.bigdata.spark.mllib
 

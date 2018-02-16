@@ -12,3 +12,15 @@
   * Pipelines: tools for constructing, evaluating, and tuning ML Pipelines
   * Persistence: saving and load algorithms, models, and Pipelines
   * Utilities: linear algebra, statistics, data handling, etc.
+* The MLlib RDD-based API is now in maintenance mode and it is going to be removed once DataFrame based API gets feature parity.
+
+### Basic Statistics:
+* There are two basic statistics offered from MLLib
+  * Correlation
+  * Hypothesis testing
+
+#### Correlation: 
+* Correlation is a statistical technique that can show whether and how strongly pairs of variables are related.
+  * ex:- weight vs height
+* The main result of a correlation is called the correlation coefficient ("r"). It ranges from -1.0 to +1.0. The closer r is to +1 or -1, the more closely the two variables are related.
+* If r is close to 0, it means there is no relationship between the variables. If r is positive, it means that as one variable gets larger the other gets larger. If r is negative it means that as one gets larger, the other gets smaller (often called an "inverse" correlation).

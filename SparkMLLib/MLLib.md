@@ -24,3 +24,31 @@
   * ex:- weight vs height
 * The main result of a correlation is called the correlation coefficient ("r"). It ranges from -1.0 to +1.0. The closer r is to +1 or -1, the more closely the two variables are related.
 * If r is close to 0, it means there is no relationship between the variables. If r is positive, it means that as one variable gets larger the other gets larger. If r is negative it means that as one gets larger, the other gets smaller (often called an "inverse" correlation).
+
+##### Examples:
+
+```
+package com.hub.bigdata.spark.mllib
+
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.ml.stat.Correlation
+
+object MyCorrelation extends App {
+
+  val sparkSession = SparkSession.builder().appName("Correlation").master("local").getOrCreate()
+  import sparkSession.implicits._
+
+  val data = Seq(
+    Vectors.sparse(4, Seq((0, 1.0), (1, 4.0), (2, 3.0),  (3, -2.0))),
+    Vectors.dense(4.0, 5.0, 0.0, 3.0),
+    Vectors.dense(6.0, 7.0, 0.0, 8.0),
+    Vectors.sparse(4, Seq((0, 9.0), (3, 1.0))))
+
+  val dataFrame = data.map(Tuple1.apply).toDF("features")
+  val corrMatrix = Correlation.corr(dataFrame, "features")
+  val scorrMatrix = Correlation.corr(dataFrame, "features", "spearman").head()
+
+  println(scorrMatrix)
+}
+```

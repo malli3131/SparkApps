@@ -25,6 +25,8 @@
 * The main result of a correlation is called the correlation coefficient ("r"). It ranges from -1.0 to +1.0. The closer r is to +1 or -1, the more closely the two variables are related.
 * If r is close to 0, it means there is no relationship between the variables. If r is positive, it means that as one variable gets larger the other gets larger. If r is negative it means that as one gets larger, the other gets smaller (often called an "inverse" correlation).
 
+* The supported correlation methods are currently Pearson’s and Spearman’s correlation.
+
 ##### Examples:
 
 ```
@@ -40,15 +42,47 @@ object MyCorrelation extends App {
   import sparkSession.implicits._
 
   val data = Seq(
-    Vectors.sparse(4, Seq((0, 1.0), (1, 4.0), (2, 3.0),  (3, -2.0))),
-    Vectors.dense(4.0, 5.0, 0.0, 3.0),
-    Vectors.dense(6.0, 7.0, 0.0, 8.0),
-    Vectors.sparse(4, Seq((0, 9.0), (3, 1.0))))
+    Vectors.sparse(2, Seq((0, 2.0), (1, 1.0))),
+    Vectors.dense(4.0, 2.0),
+    Vectors.dense(6.0, 3.0),
+    Vectors.sparse(2, Seq((0, 8.0), (1, 4.0))))
 
   val dataFrame = data.map(Tuple1.apply).toDF("features")
   val corrMatrix = Correlation.corr(dataFrame, "features")
   val scorrMatrix = Correlation.corr(dataFrame, "features", "spearman").head()
 
   println(scorrMatrix)
+}
+```
+#### Hypothesis testing
+
+* Hypothesis testing is a powerful tool in statistics to determine whether a result is statistically significant or not, whether this result occurred by chance or not. spark.ml currently supports Pearson’s Chi-squared ( χ2χ2) tests for independence.
+* ChiSquareTest conducts Pearson’s independence test for every feature against the label. For each feature, the (feature, label) pairs are converted into a contingency matrix for which the Chi-squared statistic is computed. All label and feature values must be categorical.
+
+##### Examples:
+
+```
+package com.hub.bigdata.spark.mllib
+
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.ml.stat.ChiSquareTest
+
+object Testing extends App {
+
+  val sparkSession = SparkSession.builder().appName("Hypothesis Testing").master("local").getOrCreate()
+  import sparkSession.implicits._
+
+  val data = Seq(
+    (0.0, Vectors.dense(0.5, 10.0)),
+    (0.0, Vectors.dense(1.5, 20.0)),
+    (1.0, Vectors.dense(1.5, 30.0)),
+    (0.0, Vectors.dense(3.5, 30.0)),
+    (0.0, Vectors.dense(3.5, 40.0)),
+    (1.0, Vectors.dense(3.5, 40.0)))
+
+  val df = data.toDF("label", "features")
+  val chi = ChiSquareTest.test(df, "features", "label").head
+  println(chi)
 }
 ```

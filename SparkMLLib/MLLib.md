@@ -72,6 +72,7 @@ object MyCorrelation extends App {
 |Democratic Party|32|41|
 |Republican Party|28|25|
 |Independent|34|26|
+
 ```
 package com.hub.bigdata.spark.mllib
 
